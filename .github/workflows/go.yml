@@ -32,7 +32,10 @@ jobs:
         with:
           go-version: 1.18
         id: go
-
+    
+      - name: Install golang-migrate
+        run: $ curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$platform-amd64.tar.gz | tar xvz
+      
       - name: Make migrations
         run: make migrateup
       
