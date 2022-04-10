@@ -8,12 +8,11 @@ on:
 
 jobs:
   test:
-    name: Test
     runs-on: ubuntu-latest
     steps:
 
       - name: Check out code into the Go module directory
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Set up Go
         uses: actions/setup-go@v3
