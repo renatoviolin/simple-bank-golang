@@ -14,9 +14,13 @@ type Config struct {
 	AccessTokenDuration time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
 }
 
-func LoadConfig(path string) (config Config, err error) {
+func LoadConfig(path string, mode string) (config Config, err error) {
 	viper.AddConfigPath(path)
-	viper.SetConfigName("app")
+	if mode == "PROD" {
+		viper.SetConfigName("app-prod")
+	} else {
+		viper.SetConfigName("app-dev")
+	}
 	viper.SetConfigType("env") // json, xml
 
 	viper.AutomaticEnv()

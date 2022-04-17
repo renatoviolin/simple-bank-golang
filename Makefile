@@ -26,7 +26,10 @@ test:
 	go test -v -cover ./...
 
 server:
-	go run main.go
+	ENV_MODE=DEV go run main.go
+
+server-prod:
+	ENV_MODE=PROD go run main.go
 
 mock:
 	mockgen --destination db/mock/store.go --package mockdb github.com/renatoviolin/simplebank/db/sqlc Store
@@ -35,4 +38,4 @@ server-container:
 	docker rm simplebank --force && docker run --name go-simplebank --network bank-network -p 8000:8000 -e DB_SOURCE="postgresql://postgres:secret@go-postgres:5432/simple_bank?sslmode=disable" -d simplebank
 
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test server mock migrateup1 migratedown1
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test server mock migrateup1 migratedown1 server-prod

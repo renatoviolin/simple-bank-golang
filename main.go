@@ -14,7 +14,9 @@ import (
 )
 
 func main() {
-	config, err := util.LoadConfig(".")
+	start_mode := os.Getenv("ENV_MODE") // PROD or DEV
+
+	config, err := util.LoadConfig(".", start_mode)
 	if err != nil {
 		log.Fatal("cannot load config: ", err)
 		return
