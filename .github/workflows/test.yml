@@ -14,9 +14,9 @@ jobs:
         image: postgres:alpine3.15
 
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: secret
-          POSTGRES_DB: simple_bank
+          POSTGRES_USER: ${{secret.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{secret.POSTGRES_PASSWORD}}
+          POSTGRES_DB: ${{secret.POSTGRES_DB}}
         ports:
           - 5432:5432
         options: >-

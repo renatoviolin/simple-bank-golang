@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
 
@@ -18,6 +19,14 @@ func main() {
 		log.Fatal("cannot load config: ", err)
 		return
 	}
+
+	fmt.Printf("\n")
+	fmt.Printf("DB URI........: %s\n", config.DBSource)
+	fmt.Printf("DB DRIVER.....: %s\n", config.DBDriver)
+	fmt.Printf("SERVER ADDRESS: %s\n", config.ServerAdress)
+	fmt.Printf("TOKEN SYMETRIC: %s\n", config.TokenSymmetricKey)
+	fmt.Printf("TOKEN DURATION: %s\n", config.AccessTokenDuration)
+	fmt.Printf("\n")
 
 	conn, err := sql.Open(config.DBDriver, config.DBSource)
 	if err != nil {
